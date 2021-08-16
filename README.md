@@ -19,12 +19,15 @@ and they can save their highscore with their intials.
 
 # Links
 
+Deployed Link: https://leonaysmael16.github.io/coding-quiz/
 
-#License
+GitHub Repo:
+
+# License
 
 This Project is under the MIT License.
 
-#Ackowledgments
+# Ackowledgments
 
 The University of Washington coding bootcamp is providing me the skills and knowledge to make this project.
 
