@@ -53,70 +53,32 @@ function start () {
     next();
 }
 
-
-// deducts 10 seconds when user chooses the wrong answer
-
-function incorrectAnswer() {
-    timerLeft -=10;
-    next();
-}
-// scores 10 points when user chooses the right answer
-function correctAnswer() {
-    quizScore =+10;
-    next();
-}
-// goes through questions
-function next() {
-    quizQuestions++;
-    
-    if (quizQuestions > questions.lenght -1) {
-        endGame();
-        return;
-    }
-
-    var contentQuiz = "<h3>" + questions[quizQuestions].title + "</h3>"
-
-    for (var loopButton = 0; loopButton < questions[quizQuestions].choices.length; loopButton++) {
-        var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>";
-        buttonCode = buttonCode.replace("[CHOICE]", questions[quizQuestions].choices[loopButton]);
-        
-        if(questions[quizQuestions].choices[loopButton] == questions[quizQuestions].answer) {
-            buttonCode = buttonCode.replace("[ANS]", "correctAnswer()");
-    } else {
-        buttonCode = buttonCode.replace("[ANS]", "incorrectAnswer()");
-    }
-    contentQuiz += buttonCode
-
-    }
-    document.getElementById("start-page").innerHTML = contentQuiz
-}
-
 function endGame() {
     clearInterval(timer);
 
     var contentQuiz = `
     <h2>Game over!</h2>
-    <h3>You got a ` + score +  ` </h3>
-    <h3>That means you got ` + score  +  ` questions correct!</h3>
+    <h3>You got a ` + quizScore +  ` </h3>
+    <h3>That means you got ` + quizScore / 5 +  ` questions correct!</h3>
     <input type="text" id="name" placeholder="First name"> 
-    <button onclick="setScore()">Set score</button>`;
+    <button onclick="setQuizScore()">Set score</button>`;
 
     document.getElementById("start-page").innerHTML = contentQuiz
 }
 
-function setScore() {
-    localStorage.setItem("highscore", score);
+function setQuizScore() {
+    localStorage.setItem("highscore", quizScore);
     localStorage.setItem("nameScore",  document.getElementById('name').value);
-    getScore();
+    getQuizScore();
 }
 
 
-function getScore() {
+function getQuizScore() {
     var contentQuiz = `
     <h2>` + localStorage.getItem("nameScore") + `'s highscore is:</h2>
     <h1>` + localStorage.getItem("highscore") + `</h1><br> 
     
-    <button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>
+    <button onclick="clearQuizScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>
     
     `;
 
@@ -124,7 +86,7 @@ function getScore() {
 }
 
 // clears score when user selects clear score
-function clearScore() {
+function clearQuizScore() {
     localStorage.setItem("highscore", "");
     localStorage.setItem("highscoreName",  "");
 
@@ -148,3 +110,41 @@ function resetGame() {
 
     document.getElementById("start-page").innerHTML = quizContent;
 }
+
+// deducts 10 seconds when user chooses the wrong answer
+
+function incorrectAnswer() {
+    timerLeft -=10;
+    next();
+}
+// scores 10 points when user chooses the right answer
+function correctAnswer() {
+    quizScore +=10;
+    next();
+}
+// goes through questions
+function next() {
+    quizQuestions++;
+    
+    if (quizQuestions > questions.length -1) {
+        endGame();
+        return;
+    }
+
+    var contentQuiz = "<h3>" + questions[quizQuestions].title + "</h3>"
+
+    for (var loopButton = 0; loopButton < questions[quizQuestions].choices.length; loopButton++) {
+        var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>";
+        buttonCode = buttonCode.replace("[CHOICE]", questions[quizQuestions].choices[loopButton]);
+        
+        if(questions[quizQuestions].choices[loopButton] == questions[quizQuestions].answer) {
+            buttonCode = buttonCode.replace("[ANS]", "correctAnswer()");
+    } else {
+        buttonCode = buttonCode.replace("[ANS]", "incorrectAnswer()");
+    }
+    contentQuiz += buttonCode
+
+    }
+    document.getElementById("start-page").innerHTML = contentQuiz
+}
+

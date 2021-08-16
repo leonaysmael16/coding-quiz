@@ -1,1 +1,26 @@
-/* testing testing */
+html{
+    background-color: rgb(56, 152, 190);
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+.left {
+    float: left;
+    font-weight: bold;
+
+}
+
+.right {
+    float: right;
+    font-style: oblique;
+}
+
+#start-page {
+    display: block;
+    background-color: darkgrey;
+    display: inline-block;
+    margin: 200px;
+    padding: 50px;
+    border: 2px solid black;
+}
+

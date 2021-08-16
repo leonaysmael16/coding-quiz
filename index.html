@@ -10,10 +10,10 @@
     
 </head>
 <body>
-    <header id="ScoreTimer">
+    <header id="Nav">
 <div class="highscores">
-    <div class="float-left">
-        <a id="highscore">View High Scores</a>
+    <div class="left">
+        <a id="highscore" onclick="getScore()" href="#">View High Scores</a>
     </div>
 </div>
 
@@ -21,13 +21,15 @@
    <h3>Time: <span id="timerLeft">0</span></h3>
 </div>
 </header>
-<section id="start-page"> 
+
+<div id="quiz">
+<div id="start-page"> 
     <h1>Welcome to the code quiz!</h1>
     <h2>This code quiz will test your knowledge about coding</h2>
     <button id="StartBtn" onclick="start()">Start Quiz</button>
-</section>
+</div>
 
-<div id="quiz"></div>
+</div>
 <script src="./script/script.js"></script>
 
 </body>
