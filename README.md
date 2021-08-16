@@ -21,7 +21,7 @@ and they can save their highscore with their intials.
 
 Deployed Link: https://leonaysmael16.github.io/coding-quiz/
 
-GitHub Repo:
+GitHub Repo: https://github.com/leonaysmael16/coding-quiz
 
 # License
 
